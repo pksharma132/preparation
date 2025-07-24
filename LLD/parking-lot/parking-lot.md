@@ -18,3 +18,40 @@ Non-functional Requirements
 2. Scalable design
 3. Clean object-oriented structure
 
+
+Core entities:
+1. Vehicle - type of the vehicle (bike, car, truck);
+2. ParkingSpot - the space to park (small, medium, large)
+3. ParkingFloor - Will have multiple parking spots 
+4. ParkingLot - Will have multiple floors
+5. Ticket - Issued when a vehicle enters the lot
+
+UML:
+
+Vehicle (abstract)
+ ├── Car
+ ├── Bike
+ └── Truck
+
+ParkingSpot (abstract)
+ ├── SmallSpot
+ ├── MediumSpot
+ └── LargeSpot
+
+ParkingFloor
+ ├── floorNumber
+ ├── List<ParkingSpot>
+ └── getAvailableSpots()
+
+ParkingLot
+ ├── List<ParkingFloor>
+ ├── parkVehicle(vehicle)
+ └── unparkVehicle(ticket)
+
+Ticket
+ ├── ticketId
+ ├── vehicle
+ ├── spot
+ └── timeIn/out
+
+
