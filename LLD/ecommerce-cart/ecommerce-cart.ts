@@ -46,7 +46,7 @@ class Amount implements DiscountStrategy {
 
 
 class Cart {
-    private discount: DiscountStrategy | null = null;
+    private discounts: DiscountStrategy[] = [];
     constructor(private cartItems: CartItem[]) { }
     addCartItem(product: Product, quantity: number) {
         this.cartItems.push(new CartItem(product, quantity));
@@ -65,11 +65,17 @@ class Cart {
     }
 
     addDiscount(discount: DiscountStrategy) {
-        this.discount = discount;
+        this.discounts.push(discount);
     }
 
     getDiscountedPrice() {
         const totalPrice = this.getTotalPrice();
-        return this.discount ? this.discount.getDiscountedPrice(totalPrice) : totalPrice;
+        let discountedPrice = totalPrice;
+
+        for (let discount of this.discounts) {
+            discountedPrice = discount.getDiscountedPrice(discountedPrice);
+        }
+
+        return discountedPrice;
     }
 }

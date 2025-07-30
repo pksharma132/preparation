@@ -20,6 +20,7 @@ Core Entities:
 3. Cart - will have user, discount and multiple CartItem
 4. CartItem - will have the product along with the price of the product at the time of adding to the cart
 5. Discount - can be of different types flat | amount
+6. should be able to support multiple discounts and be able to calculate the final amount after all the discounts
 
 
 
